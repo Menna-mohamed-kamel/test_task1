@@ -24,7 +24,8 @@ const addEvent = (req, res) => {
   
 };
 
-
+// edit an event
+const editEventById = 
 
 
 // Delete an event
