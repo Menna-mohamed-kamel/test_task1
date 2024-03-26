@@ -18,8 +18,8 @@ app.get('/api/events',(req,res) =>{
 
 app.get('/api/events/:id',(req,res) =>{
   const event = events.find(c => c.id === parseInt(req.params.id));
-  if(!course){
-      res.status(404).send(`The Course with the given D not found !`);
+  if(!event){
+      res.status(404).send(`The Event with the given ID not found !`);
   }else{
       res.send(event);
   }
