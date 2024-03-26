@@ -25,7 +25,26 @@ const addEvent = (req, res) => {
 };
 
 // edit an event
-const editEventById = 
+const editEventById =  (req, res) => {
+  const eventId = parseInt(req.params.id);
+  const event = events.find(c => c.id === eventId);
+
+  if (!event) 
+    res.status(404).send(`Event with ID ${eventId} not found!`);
+
+  const result = validateEvent(req.body);
+  if(result){
+    res.status(400).send(result.error.details[0].message);
+    console.log(result);
+    return;
+  }
+
+  event.name = req.body.name;
+  event.date = req.body.date; 
+  event.location = req.body.location; 
+  res.send(event);
+};
+
 
 
 // Delete an event
@@ -48,6 +67,6 @@ module.exports = {
   getAllEvents,
   getEventById,
   addEvent,
-  editEvent,
+  editEventById,
   deleteEvent,
 };
