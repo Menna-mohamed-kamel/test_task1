@@ -66,6 +66,22 @@ app.post('/api/events', (req, res) => {
     res.send(event)
 });
 
+
+
+// DELETE API endpoint
+app.delete('/api/events/:id', (req, res) => {
+  const eventId = parseInt(req.params.id);
+  const eventIndex = events.findIndex(c => c.id === eventId);
+
+  if (eventIndex === -1) {
+    res.status(404).send(`Event with ID ${eventId} not found!`);
+  } else {
+    events.splice(eventIndex, 1); // Remove event from array
+    res.status(200).send(`Event with ID ${eventId} deleted successfully!`);
+  }
+});
+
+
 app.put('/api/events/:id', (req, res) => {
   const eventId = parseInt(req.params.id);
   const event = events.find(c => c.id === eventId);
@@ -83,6 +99,7 @@ app.put('/api/events/:id', (req, res) => {
   event.name = req.body.name;
   res.send(event);
 });
+
 
 const port = process.env.PORT || 3000;
 app.listen(port,() => console.log(`listening on port ${port} ...`));
