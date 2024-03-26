@@ -18,8 +18,8 @@ app.get('/api/events',(req,res) =>{
 
 app.get('/api/events/:id',(req,res) =>{
   const event = events.find(c => c.id === parseInt(req.params.id));
-  if(!course){
-      res.status(404).send(`The Course with the given D not found !`);
+  if(!event){
+      res.status(404).send(`The Event with the given ID not found !`);
   }else{
       res.send(event);
   }
@@ -67,6 +67,7 @@ app.post('/api/events', (req, res) => {
 });
 
 
+
 // DELETE API endpoint
 app.delete('/api/events/:id', (req, res) => {
   const eventId = parseInt(req.params.id);
@@ -78,6 +79,25 @@ app.delete('/api/events/:id', (req, res) => {
     events.splice(eventIndex, 1); // Remove event from array
     res.status(200).send(`Event with ID ${eventId} deleted successfully!`);
   }
+});
+
+
+app.put('/api/events/:id', (req, res) => {
+  const eventId = parseInt(req.params.id);
+  const event = events.find(c => c.id === eventId);
+
+  if (!event) 
+    res.status(404).send(`Event with ID ${eventId} not found!`);
+
+  const result = validateEvent(req.body);
+  if(result.error){
+    res.status(400).send(result.error.details[0].message);
+    console.log(result);
+    return;
+  }
+
+  event.name = req.body.name;
+  res.send(event);
 });
 
 
