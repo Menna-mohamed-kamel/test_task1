@@ -8,6 +8,31 @@ const events = [
     { id: 2, name: 'Event 2', date: '2024-04-15', location: 'Venue 2' }
 ];
 
+app.get('/',(req,res) =>{
+  res.send('Hello World!');
+});
+
+app.get('/api/events',(req,res) =>{
+  res.send(events);
+});
+
+app.get('/api/events/:id',(req,res) =>{
+  const event = events.find(c => c.id === parseInt(req.params.id));
+  if(!course){
+      res.status(404).send(`The Course with the given D not found !`);
+  }else{
+      res.send(event);
+  }
+});
+
+app.get('/api/events/:year/:month',(req,res) =>{
+  res.send(req.params);
+});
+
+app.get('/api/events/:year/:month',(req,res) =>{
+  res.send(req.query);
+});
+
 function validateEvent(event) {
     const schema = Joi.object({
       name: Joi.string().required(),
