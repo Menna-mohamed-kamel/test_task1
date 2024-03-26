@@ -1,5 +1,4 @@
 const express = require("express");
-const Joi = require("joi");
 const app = express();
 app.use(express.json());
 
@@ -30,16 +29,6 @@ app.get('/api/events/:year/:month',(req,res) =>{
   res.send(req.query);
 });
 
-function validateEvent(event) {
-    const schema = Joi.object({
-      name: Joi.string().required(),
-      date: Joi.string().isoDate().required(),
-      location: Joi.string().required(),
-    });
-  
-    const { error } = schema.validate(event);
-    return error ? error.details[0].message : null;
-}
 
 
 

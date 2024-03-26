@@ -19,7 +19,7 @@ const addEvent = (req, res) => {
   };
 
   
-  events.push(newEvent);
+  events.push(event);
   res.status(201).send('Event added successfully');
   
 };
