@@ -63,7 +63,7 @@ app.post('/api/events', (req, res) => {
     
     events.push(newEvent);
     res.status(201).send('Event added successfully');
-    res.send(event)
+    
 });
 
 
@@ -90,13 +90,15 @@ app.put('/api/events/:id', (req, res) => {
     res.status(404).send(`Event with ID ${eventId} not found!`);
 
   const result = validateEvent(req.body);
-  if(result.error){
+  if(result){
     res.status(400).send(result.error.details[0].message);
     console.log(result);
     return;
   }
 
   event.name = req.body.name;
+  event.date = req.body.date; 
+  event.location = req.body.location; 
   res.send(event);
 });
 
