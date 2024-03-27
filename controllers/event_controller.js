@@ -24,6 +24,8 @@ const addEvent = (req, res) => {
   
 };
 
+
+
 // edit an event
 const editEventById =  (req, res) => {
   const eventId = parseInt(req.params.id);
@@ -70,3 +72,5 @@ module.exports = {
   editEventById,
   deleteEvent,
 };
+
+
