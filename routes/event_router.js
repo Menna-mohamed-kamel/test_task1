@@ -3,7 +3,7 @@ const eventrouter = Router()
 
 const eventcontroller = require('../controllers/event_controller');
 
-eventRouter.get('/', eventController.getAllEvents);
+eventRouter.get('/',);
 eventrouter.post('/',eventcontroller.addEvent);
 eventrouter.put('/api/events/:id',eventController.editEventById);
 eventRouter.delete('/:id', eventController.deleteEvent);
