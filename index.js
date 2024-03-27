@@ -2,9 +2,7 @@ const { app } = require('./app')
 
 
 
-app.get('/',(req,res) =>{
-  res.send('Hello World!');
-});
+
 
 app.get('/api/events',(req,res) =>{
   res.send(events);

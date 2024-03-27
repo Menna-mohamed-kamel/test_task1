@@ -1,6 +1,20 @@
 const { events } = require('../models/event');
 const { validateEvent } = require('../helper/validation'); 
 
+
+const getAllEvents = (req,res) =>{
+  res.send(events);
+};
+
+const getEventById = (req,res) =>{
+  const event = events.find(c => c.id === parseInt(req.params.id));
+  if(!event){
+      res.status(404).send(`The Event with the given ID not found !`);
+  }else{
+      res.send(event);
+  }
+};
+
 // Add an event
 const addEvent = (req, res) => {
   const newEvent = req.body;
