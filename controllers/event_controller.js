@@ -1,6 +1,7 @@
 const { events } = require('../models/event');
 const { validateEvent } = require('../helper/validation'); 
 
+
 // Get all events
 const getAllEvents = (req,res) =>{
   res.send(events);
@@ -14,6 +15,11 @@ const getEventById = (req,res) =>{
   }else{
       res.send(event);
   }
+};
+
+// get year and month of the event
+const getYearAndMonthOfEvent = (req,res) =>{
+  res.send(req.params);
 };
 
 // Add an event
@@ -84,6 +90,7 @@ const deleteEvent = async (req, res) => {
 module.exports = {
   getAllEvents,
   getEventById,
+  getYearAndMonthOfEvent,
   addEvent,
   editEventById,
   deleteEvent,
