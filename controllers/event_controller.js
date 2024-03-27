@@ -1,11 +1,12 @@
 const { events } = require('../models/event');
 const { validateEvent } = require('../helper/validation'); 
 
-
+// Get all events
 const getAllEvents = (req,res) =>{
   res.send(events);
 };
 
+//Get event by id
 const getEventById = (req,res) =>{
   const event = events.find(c => c.id === parseInt(req.params.id));
   if(!event){
@@ -24,6 +25,7 @@ const addEvent = (req, res) => {
   if (validationError) {
     return res.status(404).send(validationError);
   }
+  
 
   const event = {
       id: events.length + 1,
@@ -64,7 +66,7 @@ const editEventById =  (req, res) => {
 
 
 // Delete an event
-exports.deleteEvent = async (req, res) => {
+const deleteEvent = async (req, res) => {
   const eventId = parseInt(req.params.id);
   const eventIndex = events.findIndex(c => c.id === eventId);
 
