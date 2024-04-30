@@ -1,20 +1,26 @@
-const { events } = require('../models/event');
+const {  Event } = require('../models/event');
 const { validateEvent } = require('../helper/validation'); 
 
 
 // Get all events
-const getAllEvents = (req,res) =>{
-  res.send(events);
+const getAllEvents = async (req,res) =>{
+  // res.send(events);
+  try{
+  const allEvents=await course.find({});
+  res.status(200).send(allEvents);
+  }catch(error){
+    res.status(400).send(error);
+  }
 };
 
 //Get event by id
-const getEventById = (req,res) =>{
-  const event = events.find(c => c.id === parseInt(req.params.id));
-  if(!event){
-      res.status(404).send(`The Event with the given ID not found !`);
-  }else{
-      res.send(event);
-  }
+const getEventById = async (req,res) =>{
+  try{
+    const event=await course.find({_id: params.id});
+    res.status(200).send(event);
+    }catch(error){
+      res.status(400).send(error);
+    }
 };
 
 // get year and month of the event
@@ -23,27 +29,13 @@ const getYearAndMonthOfEvent = (req,res) =>{
 };
 
 // Add an event
-const addEvent = (req, res) => {
-  const newEvent = req.body;
-
-  
-  const validationError = validateEvent(newEvent);
-  if (validationError) {
-    return res.status(404).send(validationError);
+const addEvent = async (req, res) => {
+  try{
+    const event =await Event.create(req.body);
+    res.status(200).send(event);
+  }catch(error){
+    res.status(400).send(error);
   }
-  
-
-  const event = {
-      id: events.length + 1,
-      name: req.body.name,
-      date: req.body.date,
-      location: req.body.location,
-  };
-
-  
-  events.push(event);
-  res.status(201).send('Event added successfully');
-  
 };
 
 
