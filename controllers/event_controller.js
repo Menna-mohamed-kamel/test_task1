@@ -16,7 +16,7 @@ const getAllEvents = async (req,res) =>{
 //Get event by id
 const getEventById = async (req,res) =>{
   try{
-    const event=await course.find({_id: params.id});
+    const event=await course.findOne({_id: params.id});
     res.status(200).send(event);
     }catch(error){
       res.status(400).send(error);
@@ -41,38 +41,35 @@ const addEvent = async (req, res) => {
 
 
 // edit an event
-const editEventById =  (req, res) => {
-  const eventId = parseInt(req.params.id);
-  const event = events.find(c => c.id === eventId);
-
-  if (!event) 
-    res.status(404).send(`Event with ID ${eventId} not found!`);
-
-  const result = validateEvent(req.body);
-  if(result){
-    res.status(400).send(result.error.details[0].message);
-    console.log(result);
-    return;
-  }
-
-  event.name = req.body.name;
-  event.date = req.body.date; 
-  event.location = req.body.location; 
-  res.send(event);
+const editEventById =  async (req, res) => {
+  try{
+    const event = await Event.findOne({_id:req.params.id});
+    if(!event){
+      return res.status(404).send('Event not found');
+    }
+    if(req.body.name){
+      event.name = req.body.name;
+    }
+    if(req.body.count){
+      event.count = req.body.count;
+    }
+    await event.save();
+    res.status(200).send(event);
+  }catch(error){
+    res.status(400).send(error);
+  };
+  
 };
 
 
 
 // Delete an event
 const deleteEvent = async (req, res) => {
-  const eventId = parseInt(req.params.id);
-  const eventIndex = events.findIndex(c => c.id === eventId);
-
-  if (eventIndex === -1) {
-    res.status(404).send(`Event with ID ${eventId} not found!`);
-  } else {
-    events.splice(eventIndex, 1); // Remove event from array
-    res.status(200).send(`Event with ID ${eventId} deleted successfully!`);
+  try{
+    const event = Event.deleteOne({_id:req.params.id});
+    res.status(200).send();
+  }catch(error){
+    res.status(400).send(error);
   }
 };
 
