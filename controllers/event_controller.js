@@ -1,4 +1,5 @@
 const {  Event } = require('../models/event');
+const Joi = require('joi');
 const { validateEvent } = require('../helper/validation'); 
 
 
@@ -14,7 +15,7 @@ const getAllEvents = async (req,res) =>{
 
 //Get event by id
 const getEventById = async (req,res) =>{
-  try{
+  try{   //findById
     const event = await Event.findOne({_id: params.id});
     res.status(200).send(event);
     }catch(error){
@@ -52,6 +53,12 @@ const editEventById =  async (req, res) => {
     if(req.body.count){
       event.count = req.body.count;
     }
+    if (req.body.numberOfHours) {
+            event.numberOfHours = req.body.numberOfHours;
+        }
+    if (req.body.term) {
+            event.term = req.body.term;
+        }
     await event.save();
     res.status(200).send(event);
   }catch(error){
@@ -66,7 +73,7 @@ const editEventById =  async (req, res) => {
 const deleteEvent = async (req, res) => {
   try{
     const event = Event.deleteOne({_id:req.params.id});
-    res.status(200).send();
+    res.status(200).send(event);
   }catch(error){
     res.status(400).send(error);
   }
