@@ -16,8 +16,8 @@ const getAllEvents = async (req,res) =>{
 //Get event by id
 const getEventById = async (req,res) =>{
   try{   //findById
-    const event = await Event.findOne({_id: params.id});
-    res.status(200).send(event);
+    const allEvents = await Event.findOne({_id: params.id});
+    res.status(200).send(allEvents);
     }catch(error){
       res.status(400).send(error);
     }
