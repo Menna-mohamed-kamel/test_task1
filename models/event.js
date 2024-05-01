@@ -1,12 +1,17 @@
+const { date, required } = require("joi");
 const { default: mongoose } = require("mongoose");
 const eventSchema = new mongoose.Schema({
     name:{
         type: String,
         required: true,
     },
-    count:{
-        type:Number,
+    date:{
+        type:date,
         required: true,
+    },
+    location:{
+        type:String,
+        required:true
     },
 });
 
