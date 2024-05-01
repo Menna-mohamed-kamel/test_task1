@@ -1,12 +1,16 @@
 const { default: mongoose } = require("mongoose");
 const eventSchema = new mongoose.Schema({
-    name:{
+    name: {
         type: String,
-        required: true,
+        required: true
     },
-    count:{
-        type:Number,
-        required: true,
+    date: {
+        type: Date,
+        required: true
+    },
+    location: {
+        type: String,
+        required: true
     },
 });
 
