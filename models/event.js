@@ -1,3 +1,4 @@
+const { date, required } = require("joi");
 const { default: mongoose } = require("mongoose");
 const eventSchema = new mongoose.Schema({
     name: {

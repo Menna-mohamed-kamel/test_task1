@@ -4,9 +4,8 @@ const { validateEvent } = require('../helper/validation');
 
 // Get all events
 const getAllEvents = async (req,res) =>{
-  // res.send(events);
   try{
-  const allEvents=await course.find({});
+  const allEvents=await Event.find({});
   res.status(200).send(allEvents);
   }catch(error){
     res.status(400).send(error);
@@ -16,7 +15,7 @@ const getAllEvents = async (req,res) =>{
 //Get event by id
 const getEventById = async (req,res) =>{
   try{
-    const event=await course.findOne({_id: params.id});
+    const event = await Event.findOne({_id: params.id});
     res.status(200).send(event);
     }catch(error){
       res.status(400).send(error);
