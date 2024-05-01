@@ -72,7 +72,7 @@ const editEventById =  async (req, res) => {
 const deleteEvent = async (req, res) => {
   try{
     const event = Event.deleteOne({_id:req.params.id});
-    res.status(200).send();
+    res.status(200).send(event);
   }catch(error){
     res.status(400).send(error);
   }
