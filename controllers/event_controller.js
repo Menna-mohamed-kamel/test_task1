@@ -52,6 +52,10 @@ const editEventById =  async (req, res) => {
     if(req.body.count){
       event.count = req.body.count;
     }
+    if (req.body.numberOfHours) {
+            event.numberOfHours = req.body.numberOfHours;
+        }
+    
     await event.save();
     res.status(200).send(event);
   }catch(error){
