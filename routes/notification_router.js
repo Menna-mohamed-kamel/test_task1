@@ -8,7 +8,7 @@ const notificationController = require('../controllers/notification_controller')
 
 notificationRouter.get('/', notificationController.getAllNotifications);  // Get all notifications
 notificationRouter.get('/:id', notificationController.getNotificationById);  // Get notification by ID
-notificationRouter.post('/', notificationController.createNotification);  // Create a new notification
+notificationRouter.post('/', notificationController.addNotification);  // Add a new notification
 notificationRouter.put('/:id', notificationController.updateNotificationById);  // Update a notification
 notificationRouter.delete('/:id', notificationController.deleteNotificationById);  // Delete a notification
 
