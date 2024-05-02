@@ -36,4 +36,4 @@ A Dockerfile is included in the project, allowing for easy containerization and 
 
 ## Usage
 
-Once the system is running, you can interact with it using API requests sent to the specified endpoints. Refer to the API documentation or explore the routers and controllers for available endpoints and their functionalities.
+Once the system is running, i can interact with it using API requests sent to the specified endpoints. Refer to the API documentation or explore the routers and controllers for available endpoints and their functionalities.
