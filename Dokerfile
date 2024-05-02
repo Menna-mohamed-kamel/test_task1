@@ -27,7 +27,3 @@ CMD [ "serve", "-s", "build" ]
 
 #      build: docker build -t test_task1 .
 #      Run:  docker run -p 3000:3000 test_task1
-#      Stop: 
-#            docker ps 
-#            docker stop <container-id>
-#
