@@ -13,7 +13,7 @@ notificationRouter.put('/:id', notificationController.updateNotificationById);  
 notificationRouter.delete('/', notificationController.deleteNotification);  // Delete a notification
 
 // Optional route for sending notifications 
-notificationRouter.post('/send', notificationController.sendNotification); // Send a notification
+//notificationRouter.post('/send', notificationController.sendNotification); // Send a notification
 
 module.exports = {
   notificationRouter,
