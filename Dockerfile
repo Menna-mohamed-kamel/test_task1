@@ -8,11 +8,11 @@ WORKDIR /app
 COPY package*.json ./
 
 
-# Copy the rest of the application code to the working directory
-COPY . .
-
 # Install dependencies
 RUN npm install 
+
+# Copy the rest of the application code to the working directory
+COPY . .
 
 
 # Expose the port your app runs on
