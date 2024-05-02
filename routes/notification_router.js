@@ -10,10 +10,9 @@ notificationRouter.get('/', notificationController.getAllNotifications);  // Get
 notificationRouter.get('/:id', notificationController.getNotificationById);  // Get notification by ID
 notificationRouter.post('/', notificationController.addNotification);  // Add a new notification
 notificationRouter.put('/:id', notificationController.updateNotificationById);  // Update a notification
-notificationRouter.delete('/', notificationController.deleteNotification);  // Delete a notification
+notificationRouter.delete('/:id', notificationController.deleteNotification);  // Delete a notification
 
-// Optional route for sending notifications 
-//notificationRouter.post('/send', notificationController.sendNotification); // Send a notification
+
 
 module.exports = {
   notificationRouter,
