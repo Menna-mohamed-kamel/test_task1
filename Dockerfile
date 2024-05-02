@@ -12,22 +12,15 @@ COPY package*.json ./
 COPY . .
 
 # Install dependencies
-RUN npm install \
-    && npm install -g serve \
-    && npm run build \
-    && rm -fr node_modules
+RUN npm install 
 
 
 # Expose the port your app runs on
 EXPOSE 3000
 
 # Start the app using serve command
-CMD [ "serve", "-s", "build" ]
+CMD ["npm", "start"]
 
 
 #      build: docker build -t test_task1 .
 #      Run:  docker run -p 3000:3000 test_task1
-#      Stop: 
-#            docker ps 
-#            docker stop <container-id>
-#
