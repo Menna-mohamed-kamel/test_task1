@@ -16,8 +16,8 @@ const getAllEvents = async (req,res) =>{
 //Get event by id
 const getEventById = async (req,res) =>{
   try{   //findById
-    const allEvents = await Event.findOne({_id: params.id});
-    res.status(200).send(allEvents);
+    const event = await Event.findOne({_id: req.params.id});
+    res.status(200).send(event);
     }catch(error){
       res.status(400).send(error);
     }
@@ -72,7 +72,7 @@ const editEventById =  async (req, res) => {
 // Delete an event
 const deleteEvent = async (req, res) => {
   try{
-    const event = Event.deleteOne({_id:req.params.id});
+    const event = await Event.deleteOne({_id:req.params.id});
     res.status(200).send(event);
   }catch(error){
     res.status(400).send(error);
