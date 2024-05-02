@@ -12,10 +12,7 @@ COPY package*.json ./
 COPY . .
 
 # Install dependencies
-RUN npm install \
-    && npm install -g serve \
-    && npm run build \
-    && rm -fr node_modules
+RUN npm install 
 
 
 # Expose the port your app runs on
